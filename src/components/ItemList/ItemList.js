@@ -1,24 +1,17 @@
 import React from 'react';
 import {Container,Row} from 'react-bootstrap'
+import {Item} from '../Item/Item'
 
-export const ItemList = ({libros}) => {
+export const ItemList = ({items}) => {
     return (
         <Container>
-            <h2>Manuales</h2>
+            <h2>Libros</h2>
             <hr/>
             <Row>
-                {libros.map((prod) => (
-                    <div key={prod.id} className = "card-m3">
-                        <img src={prod.img} alt={prod.nombre}/>
-                        <div>
-                            <h3 className="card-title">{prod.nombre}</h3>
-                            <p className="card-text">Precio: ${prod.precio}</p> 
-
-                        </div>
-                    </div> 
-
-                )
+            {items.map((prod) => <Item key={prod.id} {...prod}/>)}      
+                
             </Row>
         </Container>
     )
 }
+export default ItemList
