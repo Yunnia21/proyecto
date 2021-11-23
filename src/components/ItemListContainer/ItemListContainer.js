@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import {ItemList} from '../ItemList/ItemList'
 import { confLibrosDisp } from '../../Helpers/pedirDatos'
+import { ItemCount } from '../ItemCount/ItemCount'
 
 export const ItemListContainer = (props) => {
     const [cargando, setCargando] = useState(false)
@@ -28,7 +29,9 @@ export const ItemListContainer = (props) => {
                 cargando 
                     ? <h2>Cargando...</h2> 
                     : <ItemList items={libros}/>
-            }
+                    
+            }  
+                 
         </>
     )
 }

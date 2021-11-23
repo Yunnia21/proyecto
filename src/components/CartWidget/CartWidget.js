@@ -6,7 +6,7 @@ export const CartWidget = () => {
     return (
         <button>
             <BsMinecart/>
-            <span>{ItemCount}</span>           
+            <ItemCount/>           
         </button>       
     )
 }

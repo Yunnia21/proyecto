@@ -15,7 +15,7 @@ export const ItemDetailContainer = () => {
 
         confLibrosDisp()
             .then( resp => {
-                setItem( resp.find( item => item.id === item.id))
+                setItem( resp.find( item => item.id))
             })
             .finally(()=>{
                 setLoading(false)
