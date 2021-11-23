@@ -12,14 +12,14 @@ export const ItemCount = () => {
 
       <div>
         <input
-          disabled={count == stock ? true : false}
+          disabled={count >= stock}
           onClick={() => setCount(count + 1)}
           type="button"
           value="Agregame"
         />
         <br />
         <input
-          disabled={count <= 0 ? true : false}
+          disabled={count <= 0}
           onClick={() => setCount(count - 1)}
           type="button"
           value="Quítame"
