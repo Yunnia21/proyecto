@@ -1,7 +1,7 @@
 import {CartWidget} from '../CartWidget/CartWidget'
 import {Navbar, Container, Nav, NavDropdown} from 'react-bootstrap'
 import './NavBar.css'
-export const NavBar = () => {
+export const NavBar = ({cart}) => {
 
     return (
         <Navbar bg="light" expand="lg" className="BarraNav">
@@ -18,7 +18,8 @@ export const NavBar = () => {
                 </NavDropdown>
             </Nav>
             </Navbar.Collapse>
-            <CartWidget/>            
+            <CartWidget
+             ItemCount= {cart}/>            
         </Container>
         </Navbar>        
     )

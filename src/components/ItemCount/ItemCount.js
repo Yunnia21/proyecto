@@ -1,33 +1,59 @@
-import {React, useState} from 'react'
+import React, { useState} from 'react';
 
-export function ItemCount({inicial, stock, elemento}) {
-           
-    const [count, setCount] = useState(inicial)
-    const quitar = (cantidad) => {
-        setCount(count - cantidad) 
-       
-    }
-    const onRemove=(quitar)=> { 
-        console.log("Quitaste de la Librería")
-    }
+export const ItemCount = () => {
 
-    
-    const agregar = (cantidad) => {
-        setCount(count + cantidad)
-    }    
-    const onAdd=(cantidad)=> {
-        console.log("Agregaste a la Librería");
-    }
-    
-    return(
+    const [count, setCount] = useState(0);
+    const [stock, setStock] = useState(10);
+  
+  
+  
+    return (
+  
+      <div>
+  
+        <h1>Contador de clicks</h1>
+  
+        
+  
         <div>
-        <button className="btn_cart" onClick={() => onRemove(quitar) }
-        >Quitar
-        </button>
-        <button className="btn_cart" onClick={() => onAdd(count)}>Agregar a la librería
-        </button>
+  
+          <input
+  
+            disabled={count == stock ? true : false}
+  
+            onClick={() => setCount(count + 1)}
+  
+            type="button"
+  
+            value="Agregar a la Libreria"
+  
+          />
+  
+          <br />
+  
+          <input
+  
+            disabled={count >= 0 ? true : false}
+  
+            onClick={() => setCount(count - 1)}
+  
+            type="button"
+  
+            value="Quitar de la Librería"
+  
+          />
+  
+          <br />
+  
+          Contador en: {count}
+  
         </div>
-    )
-}
+  
+        <div />
+  
+      </div>
+  
+    );
+  
+  }
 
-export default ItemCount
