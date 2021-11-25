@@ -5,8 +5,7 @@ import { ItemCount } from '../ItemCount/ItemCount'
 export const CartWidget = () => {
     return (
         <button>
-            <BsMinecart/>
-            <ItemCount/>           
+            <BsMinecart/>                       
         </button>       
     )
 }

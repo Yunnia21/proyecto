@@ -6,7 +6,7 @@ export const stock = [
         autor: "Wolf Erlbruch",
         edit: "Barbara Fiore",
         img: "https://via.placeholder.com/220",
-        cate: "Infantil",
+        categ: "duelo",
     },
     {
         id: 2,        
@@ -15,7 +15,7 @@ export const stock = [
         autor: "Shaun Tan",
         edit: "Barbara Fiore",
         img: "https://via.placeholder.com/220",
-        cate: "Infantil",
+        categ: "reencuentro",
     },
     {
         id: 3,
@@ -24,7 +24,7 @@ export const stock = [
         autor: "Janosch",
         edit: "Kalandraka",
         img: "https://via.placeholder.com/220",
-        cate: "Infantil",
+        categ: "reencuentro",
     },
     {
         id: 4,
@@ -33,7 +33,7 @@ export const stock = [
         autor: "Oliver Jeffers",
         edit: "Fondo de Cultura Económica",
         img: "https://via.placeholder.com/220",
-        cate: "Infantil",
+        cate: "reencuentro",
     },
     {
         id: 5,
@@ -42,6 +42,6 @@ export const stock = [
         autor: "Satoshi Kitamura y Hiawyn Oram",
         edit: "Fondo de Cultura Económica",
         img: "https://via.placeholder.com/220",
-        cate: "Infantil",
+        categ: "suenios",
     },
 ]

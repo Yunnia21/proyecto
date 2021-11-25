@@ -1,26 +1,27 @@
 import {CartWidget} from '../CartWidget/CartWidget'
-import {Navbar, Container, Nav, NavDropdown} from 'react-bootstrap'
+import {Navbar, Container, Nav} from 'react-bootstrap'
 import './NavBar.css'
+import { Link } from 'react-router-dom'
+
 export const NavBar = ({cart}) => {
 
     return (
-        <Navbar bg="light" expand="lg" className="BarraNav">
-        <Container>
-            <Navbar.Brand>Bienvenid@</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">                
-                <NavDropdown title="Powered by the Apocalypse" id="basic-nav-dropdown">
-                <NavDropdown.Item>Apocalypse World</NavDropdown.Item>
-                <NavDropdown.Item>The Warren</NavDropdown.Item>
-                <NavDropdown.Item>Dungeon World</NavDropdown.Item>                
-                <NavDropdown.Item>Worlds in Peril</NavDropdown.Item>
-                </NavDropdown>
-            </Nav>
-            </Navbar.Collapse>
-            <CartWidget
-             ItemCount= {cart}/>            
-        </Container>
-        </Navbar>        
+        <header>
+            <h1>¡A Leer!</h1>
+            <Navbar bg="dark" variant="dark">
+                <Container>
+                    <Link to="/">Tienda</Link>
+                        <Nav className="me-auto">
+                        <Nav.Link to="/libros/duelo">Duelo</Nav.Link>                        
+                        <Nav.Link to="/libros/reencuentro">Reencuentro</Nav.Link>                        
+                        <Nav.Link to="/libros/suenios">Sueños</Nav.Link>
+                        </Nav>
+                </Container> 
+            
+            <Link to="cart"><CartWidget/></Link> 
+        
+            </Navbar>
+        </header>
+                
     )
 }

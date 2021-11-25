@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { confLibrosDisp } from '../../Helpers/pedirDatos';
 import { ItemDetail } from '../ItemDetail/ItemDetail';
+import {useParams} from 'react-router'
 
 
 export const ItemDetailContainer = () => {
     const [item, setItem] = useState()
     const [loading, setLoading] = useState(false)
 
-    //const { libroId } = useParams()
+    const { itemId } = useParams()
 
     useEffect(()=>{
 
@@ -15,7 +16,7 @@ export const ItemDetailContainer = () => {
 
         confLibrosDisp()
             .then( resp => {
-                setItem( resp.find( item => item.id))
+                setItem( resp.find( prod => prod.id === Number(itemId)) )
             })
             .finally(()=>{
                 setLoading(false)
@@ -34,4 +35,5 @@ export const ItemDetailContainer = () => {
         </div>
     )
 }
+export default ItemDetailContainer;
 
