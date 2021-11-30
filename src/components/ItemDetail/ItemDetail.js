@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router';
+import ItemCount from '../ItemCount/ItemCount'
+import { Link } from 'react-router-dom'
 
 
-export const ItemDetail = ({id, nombre, precio, autor, edit, img, categ}) => {
+export const ItemDetail = ({id, nombre, precio, autor, edit, img, categ, stock}) => {
+    const [count, setCount] = useState(0)
+    const [librero, setLibrero] = useState(false)
     const navigate = useNavigate()
     const handleAtras =() => {
         navigate(-1)
@@ -10,15 +14,37 @@ export const ItemDetail = ({id, nombre, precio, autor, edit, img, categ}) => {
     const handleInicio =() => {
         navigate('/')
     };
+    const handleLibreria = () => {
+        if (count > 0) {console.log('Libro agregado', {
+            id, 
+            nombre,
+            precio,
+            count
+        })
+
+            setLibrero(true)}     
+        
+    }
 
     return (
         <div>
             <h2>{nombre}</h2>
             <img src={img} alt={nombre}/>            
-            <p>Acá esta lo del detalle // {precio}</p>
-            <p>No sé como hacer que abra otra ventana // ${autor}</p>
-            <p>Sin usar Routing // {edit}</p>
-            <p>Escribo esto para que se vea que es la descripción // {categ}</p>
+            <p>${precio}</p>
+            <p>{autor}</p>
+            <p>{edit}</p>
+            <p>{categ}</p>
+
+            {
+                !librero
+                ? <ItemCount 
+                    max={stock}
+                    count={count}
+                    setCount= {setCount}
+                    onAdd={handleLibreria}/>
+                : <Link to="/cart"> Terminar mi compra </Link>
+            }
+            
 
             <button onClick={handleAtras}>Volver</button>
             <button onClick={handleInicio}>Inicio</button>
@@ -26,3 +52,5 @@ export const ItemDetail = ({id, nombre, precio, autor, edit, img, categ}) => {
 
     )
 }
+
+export default ItemDetail;

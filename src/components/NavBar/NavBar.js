@@ -12,9 +12,9 @@ export const NavBar = ({cart}) => {
                 <Container>
                     <Link to="/">Tienda</Link>
                         <Nav className="me-auto">
-                        <Nav.Link to="/libros/duelo">Duelo</Nav.Link>                        
-                        <Nav.Link to="/libros/reencuentro">Reencuentro</Nav.Link>                        
-                        <Nav.Link to="/libros/suenios">Sueños</Nav.Link>
+                        <Nav.Link><Link to={"/productos/duelo"}>Duelo</Link></Nav.Link>                        
+                        <Nav.Link><Link to={"/productos/reencuentro"}>Reencuentro</Link></Nav.Link>                        
+                        <Nav.Link><Link to={"/productos/suenios"}>Sueños</Link></Nav.Link>
                         </Nav>
                 </Container> 
             

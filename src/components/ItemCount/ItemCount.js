@@ -2,33 +2,24 @@ import React, { useState} from 'react';
 
 
 
-export const ItemCount = () => {
-  const [count, setCount] = useState(0);
-  const [stock, setStock] = useState(10);
-
+export const ItemCount = ({max, count, setCount, onAdd}) => { 
+  const handleSumar = () => {
+    count < max && setCount(count + 1)
+  };
+  const handleRestar = () => {
+    count > 0 && setCount(count - 1) 
+  };
+  
   return (
-    <div>
-      <h1>Elementos en la Librería</h1>     
-
-      <div>
-        <input
-          disabled={count >= stock}
-          onClick={() => setCount(count + 1)}
-          type="button"
-          value="Agregame"
-        />
-        <br />
-        <input
-          disabled={count <= 0}
-          onClick={() => setCount(count - 1)}
-          type="button"
-          value="Quítame"
-        />
-        <br />
-        Contador en: {count}
-      </div>
-      <div/>
+    <div>      
+        <button  className="btn btn-outline-primary" onClick={handleSumar}> + </button>
+        <span className="mx-2">{count}</span>
+        <button  className="btn btn-outline-primary" onClick={handleRestar}> - </button>        
+        <br/>
+        <button className="btn btn-success my-2" onClick={onAdd}> Agregar a la Librería </button>     
     </div>
   );
 }
+
+export default ItemCount;
     

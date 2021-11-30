@@ -7,6 +7,7 @@ export const stock = [
         edit: "Barbara Fiore",
         img: "https://via.placeholder.com/220",
         categ: "duelo",
+        stock: 10
     },
     {
         id: 2,        
@@ -16,6 +17,7 @@ export const stock = [
         edit: "Barbara Fiore",
         img: "https://via.placeholder.com/220",
         categ: "reencuentro",
+        stock: 8
     },
     {
         id: 3,
@@ -25,6 +27,7 @@ export const stock = [
         edit: "Kalandraka",
         img: "https://via.placeholder.com/220",
         categ: "reencuentro",
+        stock: 15
     },
     {
         id: 4,
@@ -33,7 +36,8 @@ export const stock = [
         autor: "Oliver Jeffers",
         edit: "Fondo de Cultura Económica",
         img: "https://via.placeholder.com/220",
-        cate: "reencuentro",
+        categ: "reencuentro",
+        stock: 5
     },
     {
         id: 5,
@@ -43,5 +47,6 @@ export const stock = [
         edit: "Fondo de Cultura Económica",
         img: "https://via.placeholder.com/220",
         categ: "suenios",
+        stock: 10
     },
 ]

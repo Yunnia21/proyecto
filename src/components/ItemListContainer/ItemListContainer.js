@@ -4,7 +4,7 @@ import { confLibrosDisp } from '../../Helpers/pedirDatos'
 import { useParams } from 'react-router'
 
 export const ItemListContainer = (props) => {
-    const [cargando, setCargando] = useState(false)
+    const [cargando, setCargando] = useState(true)
     const [libros, setLibros] = useState([])
     const {categId} = useParams()
 
@@ -15,14 +15,16 @@ export const ItemListContainer = (props) => {
             .then( (resp) => {
                 if (!categId){
                     setLibros(resp)
+                    setCargando(false)
                 }
                 else {
                     setLibros(resp.filter(prod => prod.categ === categId))
+                    setCargando(false)
                 }
             })
             .catch( (error) => {
                 console.log(error)
-                setCargando(false)            
+                setCargando(true)            
             })
 
     }, [categId])

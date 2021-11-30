@@ -7,3 +7,5 @@ export const CartView = () => {
         </div>
     )
 }
+
+export default CartView;
