@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { useNavigate } from 'react-router';
 import ItemCount from '../ItemCount/ItemCount'
 import { Link } from 'react-router-dom'
+import {CartContext} from '../../Context/CartContext'
 
 
 export const ItemDetail = ({id, nombre, precio, autor, edit, img, categ, stock}) => {
+    const{agregarAlCarro} = useContext (CartContext)
+    
     const [count, setCount] = useState(0)
     const [librero, setLibrero] = useState(false)
     const navigate = useNavigate()
@@ -15,15 +18,17 @@ export const ItemDetail = ({id, nombre, precio, autor, edit, img, categ, stock})
         navigate('/')
     };
     const handleLibreria = () => {
-        if (count > 0) {console.log('Libro agregado', {
-            id, 
-            nombre,
-            precio,
-            count
-        })
-
-            setLibrero(true)}     
-        
+        if (count > 0) {
+            agregarAlCarro({
+                id,
+                nombre,
+                autor,
+                precio,
+                img,
+                count
+            })
+            setLibrero(true)
+        }         
     }
 
     return (
