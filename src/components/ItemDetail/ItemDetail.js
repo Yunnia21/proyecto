@@ -6,10 +6,10 @@ import {CartContext} from '../../Context/CartContext'
 
 
 export const ItemDetail = ({id, nombre, precio, autor, edit, img, categ, stock}) => {
-    const{agregarAlCarro} = useContext (CartContext)
+    const{agregarAlCarro, enCarro} = useContext (CartContext)
     
     const [count, setCount] = useState(0)
-    const [librero, setLibrero] = useState(false)
+    
     const navigate = useNavigate()
     const handleAtras =() => {
         navigate(-1)
@@ -26,8 +26,7 @@ export const ItemDetail = ({id, nombre, precio, autor, edit, img, categ, stock})
                 precio,
                 img,
                 count
-            })
-            setLibrero(true)
+            })            
         }         
     }
 
@@ -41,7 +40,7 @@ export const ItemDetail = ({id, nombre, precio, autor, edit, img, categ, stock})
             <p>{categ}</p>
 
             {
-                !librero
+                !enCarro(id)
                 ? <ItemCount 
                     max={stock}
                     count={count}

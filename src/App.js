@@ -7,33 +7,18 @@ import { ItemDetailContainer} from './components/ItemDetailContainer/ItemDetailC
 import {React, useState} from "react"
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { CartView } from './components/CartView/CartView'
-import { CartContext } from './Context/CartContext/'
+import { CartProvider} from './Context/CartContext'
+
 
 
 
 function App() {
-  const [carro, setCarro] = useState([])
-  const agregarAlCarro = (item) =>{
-    setCarro([...carro, item])
-  }
-  const quitarDelCarro = (id) => {
-    setCarro(carro.filter(prod => prod.id !== id))
-  }
-  const vaciarCarro = () => {
-    setCarro([])
-  }
-  const enCarro = (id) => {
-    return carro.some( prod => prod.id === id)
-  }
+  
+  
    
   return (
-    <CartContext.Provider value={{
-      carro,
-      agregarAlCarro,
-      quitarDelCarro,
-      vaciarCarro,
-      enCarro
-    }} >    
+    <CartProvider>      
+       
       <BrowserRouter>
         <NavBar/>
         <Routes>
@@ -44,9 +29,10 @@ function App() {
           <Route path="*" element={ <Navigate to="/" /> } />
        </Routes>     
       </BrowserRouter> 
-    </CartContext.Provider>     
 
-               
+    </CartProvider>
+
+                  
     
   );
 }
