@@ -7,8 +7,7 @@ export const CartWidget = () => {
     const totalCarro = useContext(CartContext)
     return (
         <button>
-            <BsMinecart/>  
-            <span>{totalCarro()}</span>                     
+            <BsMinecart/>                                   
         </button>       
     )
 }
