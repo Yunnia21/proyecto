@@ -18,7 +18,7 @@ export const NavBar = ({cart}) => {
                         </Nav>
                 </Container> 
             
-            <Link to="cart"><CartWidget/></Link> 
+            <CartWidget/>
         
             </Navbar>
         </header>

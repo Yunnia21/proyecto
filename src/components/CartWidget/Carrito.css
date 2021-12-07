@@ -1,0 +1,7 @@
+.widget {
+    visibility: visible;
+}
+.hidden {
+    visibility: hidden;
+    pointer-events: none;
+}
