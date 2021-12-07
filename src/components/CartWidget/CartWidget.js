@@ -6,9 +6,9 @@ import {CartContext} from '../../Context/CartContext'
 import './Carrito.css'
 
 export const CartWidget = () => {
-    const {totalCarro, cart} = useContext(CartContext)
+    const {totalCarro, carro} = useContext(CartContext)
     return (
-        <div className={cart.length === 0 ?'hidden widget' : 'widget'}>
+        <div  className={carro.length === 0 ?'hidden' :'widget'}>
             <Link to="/cart">
                 <BsMinecart/>
                 <span>{totalCarro}</span>
