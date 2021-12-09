@@ -10,7 +10,7 @@ export const CartWidget = () => {
     return (
         <div  className={carro.length === 0 ?'hidden' :'widget'}>
             <Link to="/cart">
-                <BsMinecart/>
+                <BsMinecart className="carro"/>
                 <span>{totalCarro}</span>
             </Link>
 

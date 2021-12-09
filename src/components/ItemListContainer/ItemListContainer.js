@@ -1,31 +1,37 @@
 import React, { useEffect, useState } from "react"
 import {ItemList} from '../ItemList/ItemList'
-import { confLibrosDisp } from '../../Helpers/pedirDatos'
 import { useParams } from 'react-router'
+import { collection, getDocs, query, where } from "firebase/firestore/lite"
+import {db} from '../../firebase/config'
 
 export const ItemListContainer = (props) => {
     const [cargando, setCargando] = useState(true)
     const [libros, setLibros] = useState([])
     const {categId} = useParams()
 
-    useEffect(() => {
-        
+    useEffect(() => {        
         setCargando(true)
-        confLibrosDisp()
-            .then( (resp) => {
-                if (!categId){
-                    setLibros(resp)
-                    setCargando(false)
-                }
-                else {
-                    setLibros(resp.filter(prod => prod.categ === categId))
-                    setCargando(false)
-                }
+
+        const productosRef = collection(db, 'productos')
+        const q = categId ? query(productosRef, where('categ', '==', categId)) : productosRef
+
+        
+        getDocs(q)
+            .then((collection) => {
+                const elementos = collection.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data()
+                }))
+                console.log(elementos)
+
+                setLibros(elementos)
             })
-            .catch( (error) => {
-                console.log(error)
-                setCargando(true)            
+            .finally(() => {
+                setCargando(false)
             })
+
+        
+
 
     }, [categId])
 

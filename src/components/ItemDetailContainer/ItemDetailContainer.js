@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { confLibrosDisp } from '../../Helpers/pedirDatos';
 import { ItemDetail } from '../ItemDetail/ItemDetail';
 import {useParams} from 'react-router'
-
+import { doc, getDoc, collection } from "firebase/firestore/lite"
+import {db} from '../../firebase/config'
 
 export const ItemDetailContainer = () => {
     const [item, setItem] = useState()
@@ -14,14 +14,19 @@ export const ItemDetailContainer = () => {
 
         setLoading(true)
 
-        confLibrosDisp()
-            .then( resp => {
-                setItem( resp.find( prod => prod.id === Number(itemId)) )
+        const productosRef = collection(db, 'productos')
+        const docRef = doc(productosRef, itemId)
+        getDoc(docRef)
+            .then((doc) => {
+                setItem({
+                    id: doc.id,
+                    ...doc.data()
+                })
             })
-            .finally(()=>{
+            .finally (() => {
                 setLoading(false)
-            })
-    }, [])
+            })            
+    }, [itemId])
 
     return (
         <div className="container my-5">
