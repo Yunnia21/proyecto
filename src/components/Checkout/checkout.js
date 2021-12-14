@@ -3,7 +3,7 @@ import { Navigate } from 'react-router'
 import { CartContext } from '../../Context/CartContext'
 import { db } from '../../firebase/config'
 import { validarDatos } from '../../Helpers/validarDatos'
-import { collection, Timestamp, addDoc} from 'firebase/firestore/lite'
+import { collection, Timestamp, where, addDoc, writeBatch, query, documentId, getDocs} from 'firebase/firestore/lite'
 //import Swal from 'sweetalert2'
 
 export const Checkout = () => {
@@ -25,7 +25,7 @@ export const Checkout = () => {
        })
    }
 
-   const handleSubmit = (e) =>    {
+   const handleSubmit = async (e) =>    {
        e.preventDefault()
        if (!validarDatos(values)) { return }
        const orden = {
@@ -35,11 +35,31 @@ export const Checkout = () => {
         date: Timestamp.fromDate(new Date())       
     }
     const ordenRef = collection(db, "orders")
-    addDoc(ordenRef, orden)
+    const productosRef = collection(db, "productos")
+    const batch = writeBatch(db)
+    const q = query(productosRef, where(documentId(), 'in', carro.map(el => el.id)))
+    const productos = await getDocs(q)
+    const outOfStock = []
+    productos.docs.forEach((doc) => {
+        const itemToUpdate = carro.find((prod) => prod.id === doc.id)
+        if (doc.data().stock >= itemToUpdate.count) {
+            batch.update(doc.ref, {
+                stock: doc.data().stock - itemToUpdate.count
+            })
+        } else {
+            outOfStock.push(itemToUpdate)
+        }
+    })
+    if (outOfStock.length === 0) {
+        batch.commit()
+    } else {
+        console.log(outOfStock)
+    }
+    /*addDoc(ordenRef, orden)
         .then((res) => {
             console.log(res.id)
         })
-       console.log(orden)
+       console.log(orden)*/
    }
     return(
         <>
