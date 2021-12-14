@@ -17,10 +17,10 @@ export const CartProvider = ({children}) => {
         return carro.some( prod => prod.id === id)
     }
     const totalCarro = () => {
-        return carro.reduce((acc, prod) => acc + prod.cantidad, 0)        
+        return carro.reduce((acc, prod) => acc + prod.count, 0)        
     }
-    const totalPrecioCarro = () => {
-        return carro.reduce((acc, prod) => acc + prod.precio * prod.cantidad)
+    const totalCompra = () => {
+        return carro.reduce((acc, prod) => acc + prod.precio * prod.count, 0)
     }
     return (
         <CartContext.Provider value= {{
@@ -29,7 +29,8 @@ export const CartProvider = ({children}) => {
             quitarDelCarro,
             vaciarCarro,
             enCarro,
-            totalCarro 
+            totalCarro,
+            totalCompra 
         }}>
             {children}
             

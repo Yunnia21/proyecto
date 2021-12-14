@@ -5,7 +5,7 @@ import { CartItem } from './CartItem'
 
 export const CartView = () => {
 
-    const {carro, vaciarCarro} = useContext (CartContext)
+    const {carro, vaciarCarro, totalCompra} = useContext (CartContext)
     if (carro.length === 0){
         return(
             <div>
@@ -26,8 +26,9 @@ export const CartView = () => {
             </section>
             <hr/>
             <div>
+                <p>Total: ${totalCompra()}</p>
                 <button onClick={vaciarCarro}>Vaciar</button>
-                <button>Terminar Compra</button>
+                <Link to="/checkout">Terminar compra</Link>
             </div>
             
         </div>
