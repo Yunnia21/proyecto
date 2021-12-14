@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { Navigate } from 'react-router'
 import { CartContext } from '../../Context/CartContext'
-//import { db } from '../../firebase/config'
+import { db } from '../../firebase/config'
 import { validarDatos } from '../../Helpers/validarDatos'
-//import { collection, Timestamp, writeBatch, query, where, documentId, getDocs, addDoc } from 'firebase/firestore/lite'
+import { collection, Timestamp, addDoc} from 'firebase/firestore/lite'
 //import Swal from 'sweetalert2'
 
 export const Checkout = () => {
@@ -31,9 +31,14 @@ export const Checkout = () => {
        const orden = {
         buyer: {...values},
         items: carro,
-        total: totalCompra()
-        
+        total: totalCompra(),
+        date: Timestamp.fromDate(new Date())       
     }
+    const ordenRef = collection(db, "orders")
+    addDoc(ordenRef, orden)
+        .then((res) => {
+            console.log(res.id)
+        })
        console.log(orden)
    }
     return(
