@@ -12,9 +12,9 @@ export const ItemCount = ({max, count, setCount, onAdd}) => {
   
   return (
     <div>      
-        <button  className="btn btn-outline-primary" onClick={handleSumar}> + </button>
+        <button  className="btn btn-outline-primary" onClick={handleRestar}> - </button>
         <span className="mx-2">{count}</span>
-        <button  className="btn btn-outline-primary" onClick={handleRestar}> - </button>        
+        <button  className="btn btn-outline-primary" onClick={handleSumar}> + </button>        
         <br/>
         <button className="btn btn-success my-2" onClick={onAdd}> Agregar a la Librería </button>     
     </div>

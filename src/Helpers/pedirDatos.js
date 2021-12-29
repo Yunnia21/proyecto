@@ -1,4 +1,4 @@
-import { stock } from "../Data/stock"
+/*import { stock } from "../Data/stock"
 
 export const confLibrosDisp = () => {
     return new Promise((resolve, reject) => {         
@@ -6,4 +6,4 @@ export const confLibrosDisp = () => {
             resolve(stock)
         }, 1500)
     })
-}
+}*/
