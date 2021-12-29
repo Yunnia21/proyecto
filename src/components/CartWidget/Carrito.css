@@ -1,7 +1,9 @@
 .widget {
     visibility: visible;
+    align-items: center;
 }
 .hidden {
     visibility: hidden;
     pointer-events: none;
 }
+

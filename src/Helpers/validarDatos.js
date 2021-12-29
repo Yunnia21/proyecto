@@ -4,26 +4,26 @@ export const validarDatos = (values) => {
     if (values.nombre.length < 3) {
         Swal.fire({
             icon: 'error',
-            title: 'Nombre demasiado corto'
-        })
-        return false
-    }
+            title: 'Nombre Inválido'
+        });
+        return false;
+    };
 
-    if (values.apellido.lenght < 4) {
+    if (values.apellido.length < 4) {
         Swal.fire({
             icon: 'error',
-            title: 'Apellido demasiado corto'
-        })
-        return false
-    }
+            title: 'Apellido Inválido'
+        });
+        return false;
+    };
 
-    if (values.email.lenght < 6) {
+    if (values.email.length < 6) {
         Swal.fire({
             icon: 'error',
-            title: 'E-mail inválido'
-        })
-        return false
-    }
-    return true
+            title: 'Tienes que ingresar un email válido'
+        });
+        return false;
+    };
+    return true;
 
-}
+};

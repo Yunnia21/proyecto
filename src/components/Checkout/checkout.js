@@ -4,11 +4,12 @@ import { CartContext } from '../../Context/CartContext'
 import { db } from '../../firebase/config'
 import { validarDatos } from '../../Helpers/validarDatos'
 import { collection, Timestamp, where, addDoc, writeBatch, query, documentId, getDocs} from 'firebase/firestore/lite'
+import Swal from 'sweetalert2'
 //import Swal from 'sweetalert2'
 
 export const Checkout = () => {
     
-   const {carro, totalCompra} = useContext(CartContext)
+   const {carro, totalCompra, vaciarCarro} = useContext(CartContext)
 
    const [values, setValues] = useState({
        nombre: '',
@@ -51,15 +52,27 @@ export const Checkout = () => {
         }
     })
     if (outOfStock.length === 0) {
-        batch.commit()
-    } else {
-        console.log(outOfStock)
-    }
-    /*addDoc(ordenRef, orden)
+        addDoc(ordenRef, orden)
         .then((res) => {
-            console.log(res.id)
+            batch.commit()
+            Swal.fire({
+                icon: 'success',
+                title: 'Gracias por su compra!',
+                text: 'e ha creado tu número de orden: ${res.id}',
+                
+            })
+            vaciarCarro()
+            
         })
-       console.log(orden)*/
+        
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops, parece que muchas personas querían este libro',
+            text: outOfStock.map(el => el.prod).join(', '),
+        })
+    }
+    
    }
     return(
         <>
@@ -78,7 +91,7 @@ export const Checkout = () => {
                             type="text"
                             placeholder="nombre"
                         />
-                        {values.nombre.length < 4 && <small>Nombre inválido</small>}
+                        {values.nombre.length < 3 && <small>Nombre inválido</small>}
 
                         <input
                             onChange={handleInputChange}
@@ -99,6 +112,8 @@ export const Checkout = () => {
                             placeholder="email"
                         />
                         {values.email.length < 4 && <small>Email inválido</small>}
+
+                        
 
                         <button type="submit" className="btn btn-primary">Enviar</button>
                     </form>
